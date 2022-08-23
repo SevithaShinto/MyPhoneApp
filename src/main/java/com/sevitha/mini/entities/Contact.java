@@ -9,30 +9,43 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
 @Table(name ="CONTACT_DTLS")
+@Data  //Equivalent to @Getter @Setter @RequiredArgsConstructor @ToString @EqualsAndHashCode. 
+@NoArgsConstructor
+@AllArgsConstructor
 public class Contact {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "CONTACT_ID")
-	Integer contactId;
+	private Integer contactId;
 	
 	@Column(name = "CONTACT_NAME")
-	String contactName;
+	private String contactName;
 	
 	@Column(name = "CONTACT_NUMBER")
-	String contactNumber;
+	private String contactNumber;
 	
 	@Column(name = "CONTACT_EMAIL")
-	String contactEmail;
+	private String contactEmail;
 	
 	@Column(name = "ACTIVE_SWITCH")
-	Character activeSwitch;
+	private Character activeSwitch;
 	
-	@Column(name = "CREATED_DATE")
-	LocalDate createdDate;
+	@Column(name = "CREATED_DATE" , updatable = false)
+	@CreationTimestamp
+	private LocalDate createdDate;
 	
-	@Column(name = "UPDATED_DATE")
-	LocalDate  updateDate;
+	@Column(name = "UPDATED_DATE" , insertable = false)
+	@UpdateTimestamp
+	private LocalDate  updateDate;
 }
