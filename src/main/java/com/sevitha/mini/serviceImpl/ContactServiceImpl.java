@@ -47,6 +47,21 @@ public class ContactServiceImpl implements ContactService {
 		return findById;
 	}
 	
+	//update all
+	@Override
+	public boolean updateContact(Contact contact) {
+		Contact save = contactRepo.save(contact);
+		
+		if(save != null)
+		{
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	
 	//delete by Id
 
 	@Override
@@ -54,5 +69,7 @@ public class ContactServiceImpl implements ContactService {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	
 
 }
