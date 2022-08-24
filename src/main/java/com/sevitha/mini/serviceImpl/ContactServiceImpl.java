@@ -2,6 +2,8 @@ package com.sevitha.mini.serviceImpl;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,8 +37,11 @@ public class ContactServiceImpl implements ContactService {
 	
 	@Override
 	public List<Contact> getAllContact() {
-		List<Contact> findAll = contactRepo.findAll();
-		return findAll;
+		List<Contact> contacts = contactRepo.findAll();
+		Stream<Contact> stream = contacts.stream();
+		Stream<Contact> filter = stream.filter(contact-> contact.getActiveSwitch()== 'Y');
+		List<Contact> collect = filter.collect(Collectors.toList());
+		return collect;
 	}
 
 	//get by Id
@@ -76,16 +81,28 @@ public class ContactServiceImpl implements ContactService {
 //		{
 //			return false;
 //		}
+		
+//		Optional<Contact> contact = contactRepo.findById(cid);
+//		if(contact.isPresent())
+//		{
+//			contactRepo.deleteById(cid);
+//			return true;
+//		}
+//		else
+//		{
+//			return false;
+//		}
+		
 		Optional<Contact> contact = contactRepo.findById(cid);
 		if(contact.isPresent())
 		{
-			contactRepo.deleteById(cid);
+			Contact contact2 = contact.get();
+			contact2.setActiveSwitch('N');
+			contactRepo.save(contact2);
 			return true;
 		}
 		else
-		{
 			return false;
-		}
 		
 	}
 
