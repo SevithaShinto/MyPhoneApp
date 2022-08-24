@@ -65,11 +65,28 @@ public class ContactServiceImpl implements ContactService {
 	//delete by Id
 
 	@Override
-	public boolean deleteContactById(Integer contactId) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean deleteContactById(Integer cid) {
+//		boolean existsById = contactRepo.existsById(cid);
+//		if(existsById)
+//		{
+//			contactRepo.deleteById(cid);
+//			return true;
+//		}
+//		else
+//		{
+//			return false;
+//		}
+		Optional<Contact> contact = contactRepo.findById(cid);
+		if(contact.isPresent())
+		{
+			contactRepo.deleteById(cid);
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		
 	}
-
-	
 
 }

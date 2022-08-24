@@ -13,7 +13,9 @@ public interface ContactService {
 	//get by Id
 	Contact    getContactById(Integer contactId);
 	//delete by Id
-	boolean deleteContactById(Integer contactId);
-	
+	public boolean deleteContactById(Integer cid);
+	//update contact
 	public boolean updateContact(Contact contact);
+	
+	
 }
