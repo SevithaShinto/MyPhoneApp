@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.sevitha.mini.entities.Contact;
 
-public interface ContactService {
+public interface ContactServiceI {
 	
 	//save contact
 	boolean  saveContact(Contact contact);

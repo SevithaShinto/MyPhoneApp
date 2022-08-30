@@ -10,10 +10,10 @@ import org.springframework.stereotype.Service;
 
 import com.sevitha.mini.entities.Contact;
 import com.sevitha.mini.repository.ContactRepo;
-import com.sevitha.mini.service.ContactService;
+import com.sevitha.mini.service.ContactServiceI;
 
 @Service
-public class ContactServiceImpl implements ContactService {
+public class ContactServiceImpl implements ContactServiceI {
 
 	@Autowired
 	private ContactRepo contactRepo;
